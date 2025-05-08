@@ -1,0 +1,48 @@
+class Solution {
+    // Function to return a list containing the union of the two arrays.
+    public static ArrayList<Integer> findUnion(int a[], int b[]) {
+        ArrayList<Integer>arr=new ArrayList<>();
+        int n1=a.length;
+        int n2=b.length;
+        int i=0,j=0;
+        while(i<n1 && j<n2)
+        {
+            if(a[i]<=b[j])
+            {
+                if(arr.isEmpty() || arr.get(arr.size()-1)!=a[i])
+                {
+                    arr.add(a[i]);
+                }
+                i++;
+            }
+            else
+            {
+                if(arr.isEmpty() || arr.get(arr.size()-1)!=b[j])
+                {
+                    arr.add(b[j]);
+                }
+                j++;
+            }
+        }
+        while(i<n1)
+        {
+            if(arr.isEmpty() || arr.get(arr.size()-1)!=a[i])
+            {
+                arr.add(a[i]);
+            }
+            i++;
+        }
+        while(j<n2)
+        {
+            if(arr.isEmpty() || arr.get(arr.size()-1)!=b[j])
+            {
+                arr.add(b[j]);
+            }
+            j++;
+        }
+        return arr;
+    }
+}
+
+time=O(n1+n2)
+space=O(n1+n2)
