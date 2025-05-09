@@ -1,0 +1,44 @@
+class Solution {
+    public int singleNumber(int[] nums) { 
+     for(int i=0;i<nums.length;i++)
+     {
+        int count=0;
+        for(int j=0;j<nums.length;j++)
+        {
+            if(nums[i]==nums[j])
+            {
+                count++;
+            }
+        }
+        if(count==1)
+        {
+            return nums[i];
+        }
+     }
+     return -1;
+    }
+}
+
+time=O(n*n)
+space=1
+
+class Solution {
+    public int singleNumber(int[] nums) { 
+       Map<Integer,Integer>mp=new HashMap<>();
+       for(int num:nums)
+       {
+         mp.put(num,mp.getOrDefault(num,0)+1);
+       }
+       for(int num:nums)
+       {
+         if(mp.get(num)==1)
+         {
+            return num;
+         }
+       }
+       return -1;
+    }
+}
+
+time=O(n)
+space=O(n)
