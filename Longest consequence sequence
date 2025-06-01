@@ -57,3 +57,32 @@ class Solution {
 
 time=O(log n)+O(n)
 space=O(1)
+
+class Solution {
+    public int longestConsecutive(int[] nums) {
+    HashSet<Integer>st=new HashSet<>();
+    int maxi=Integer.MIN_VALUE;
+    for(int num:nums)
+    {
+        st.add(num);
+    }
+    for(int it:st)
+    {
+       if(!st.contains(it-1))
+       {
+        int count=1;
+        int last_element=it;
+        while(st.contains(it+1))
+        {
+            count++;
+            it++;
+        }
+        maxi=Math.max(count,maxi);
+       }
+    }
+    return maxi;
+     }
+}
+
+time=O(n)+O(2n)
+space=O(n)
