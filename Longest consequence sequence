@@ -1,0 +1,59 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+     int maxi=Integer.MIN_VALUE;
+     for(int i=0;i<nums.length;i++)
+     {
+        int count=1;
+        int element=nums[i];
+        int next=element+1;
+        while(longest(nums,next))
+        {
+            count++;
+            next++;
+        }
+        maxi=Math.max(count,maxi);
+     }   
+     return maxi;
+    }
+      public boolean longest(int[] arr,int target)
+     {
+        for(int num:arr)
+        {
+            if(num==target)
+            {
+                return true;
+            }
+        }
+        return false;
+     }
+}
+
+time=O(n)
+space=O(1)
+
+class Solution {
+    public int longestConsecutive(int[] nums) {
+    Arrays.sort(nums);
+    int maxi=Integer.MIN_VALUE;
+    int last_element=Integer.MIN_VALUE;
+    int count=0;
+    for(int i=0;i<nums.length;i++)
+    {
+        if(nums[i]-1==last_element)
+        {
+            count++;
+            last_element=nums[i];
+        }
+        else if(nums[i]!=last_element)
+        {
+            count=1;
+            last_element=nums[i];
+        }
+        maxi=Math.max(maxi,count);
+    }
+    return maxi;
+     }
+}
+
+time=O(log n)+O(n)
+space=O(1)
