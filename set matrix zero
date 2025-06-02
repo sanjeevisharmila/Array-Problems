@@ -1,0 +1,128 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int nrow=matrix.length;
+        int mcol=matrix[0].length;
+        int[] row=new int[nrow];
+        int[] col=new int[mcol];
+        for(int i=0;i<nrow;i++)
+        {
+            for(int j=0;j<mcol;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    row[i]=-1;
+                    col[j]=-1;
+                }
+            }
+        }
+        for(int i=0;i<nrow;i++)
+        {
+            if(row[i]==-1)
+            {
+                for(int j=0;j<mcol;j++)
+                {
+                    matrix[i][j]=0;
+                }
+            }
+        }
+        for(int j=0;j<mcol;j++)
+        {
+            if(col[j]==-1)
+            {
+                for(int i=0;i<nrow;i++)
+                {
+                    matrix[i][j]=0;
+                }
+            }
+        }
+    }
+}
+
+time=O(m*n)+O(m*n)+O(m*n)
+space=O(n+m)
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int nrow=matrix.length;
+        int mcol=matrix[0].length;
+        for(int i=0;i<nrow;i++)
+        {
+            for(int j=0;j<mcol;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    row(matrix,i,mcol);
+                    col(matrix,j,nrow);
+                }
+            }
+        }
+      
+        for(int i=0;i<nrow;i++)
+        {
+            for(int j=0;j<mcol;j++)
+            {
+                if(matrix[i][j]==-1)
+                {
+                    matrix[i][j]=0;
+                }
+            }
+        }
+    }
+    private void row(int[][] matrix,int r,int c)
+        {
+            for(int i=0;i<c;i++)
+            {
+                if(matrix[r][i]!=0)
+                {
+                    matrix[r][i]=-1;
+                }
+            }
+        }
+         private void col(int[][] matrix,int c,int r)
+        {
+            for(int i=0;i<r;i++)
+            {
+                if(matrix[i][c]!=0)
+                {
+                    matrix[i][c]=-1;
+                }
+            }
+        }
+}
+
+k=m*n(no of zeros)
+time=O(k*(m+n))+O(m+n)
+space=O(1)
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int nrow=matrix.length;
+        int mcol=matrix[0].length;
+        int[] row=new int[nrow];
+        int[] col=new int[mcol];
+        for(int i=0;i<nrow;i++)
+        {
+            for(int j=0;j<mcol;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    row[i]=1;
+                    col[j]=1;
+                }
+            }
+        }
+        for(int i=0;i<nrow;i++)
+        {
+            for(int j=0;j<mcol;j++)
+            {
+                if(row[i]==1 || col[j]==1)
+                {
+                    matrix[i][j]=0;
+                }
+            }
+        }
+        }
+}
+
+time=O(m*n)+O(m*n)
+space=O(m+n)
