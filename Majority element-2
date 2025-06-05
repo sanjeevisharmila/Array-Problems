@@ -1,0 +1,140 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+     int n=nums.length;
+     int count;
+     List<Integer>ans=new ArrayList<>();
+     if(n<3)
+     {
+        for(int num:nums)
+        { 
+            if(!ans.contains(num))
+            {
+                ans.add(num);
+            }
+        }
+        return ans;
+     }
+     for(int i=0;i<n-1;i++)
+     {
+        count=0;
+        for(int j=i;j<n;j++)
+        {
+            if(nums[j]==nums[i])
+            {
+                count++;
+            }
+        }
+        if(count>n/3 && !ans.contains(nums[i]))
+        {
+            ans.add(nums[i]);
+        }
+     }
+     return ans;
+    }
+}
+
+time=O(n*n)
+space=O(1) it hardly store 2 elements
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        Map<Integer,Integer>mp=new HashMap<>();
+        List<Integer>ans=new ArrayList<>();
+        int n=nums.length;
+        if(n<3)
+        {
+            for(int num:nums)
+            {
+                if(!ans.contains(num))
+                {
+                    ans.add(num);
+                }
+            }
+            return ans;
+        }
+        for(int num:nums)
+        {
+            mp.put(num,mp.getOrDefault(num,0)+1);
+        }
+        for(int num:nums)
+        {
+            if(mp.get(num)>n/3 && !ans.contains(num))
+            {
+                ans.add(num);
+            }
+        }
+        return ans;
+    }
+}
+
+time=O(n)
+space=O(n)
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer>ans=new ArrayList<>();
+        int c1=0,c2=0,e1=0,e2=0;
+        int n=nums.length;
+        if(n<3)
+        {
+            for(int num:nums)
+            {
+                if(!ans.contains(num))
+                {
+                    ans.add(num);
+                }
+            }
+              return ans;
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(c1==0 && e2!=nums[i])
+            {
+                c1=1;
+                e1=nums[i];
+            }
+            else if(c2==0 && e1!=nums[i])
+            {
+                c2=1;
+                e2=nums[i];
+            }
+            else if(nums[i]==e1)
+            {
+                c1++;
+            }
+            else if(nums[i]==e2)
+            {
+                c2++;
+            }
+            else
+            {
+                c1--;
+                c2--;
+            }
+        } 
+        int cn1=0,cn2=0;
+        for(int num:nums)
+        {
+            if(num==e1)
+            {
+                cn1++;
+            }
+            if(num==e2)
+           {
+              cn2++;
+           }
+        }
+       if(cn1>n/3 && !ans.contains(e1))
+       {
+          ans.add(e1);
+       }
+       if(cn2>n/3 && !ans.contains(e2))
+       {
+        ans.add(e2);
+       }
+       return ans;
+    }
+}
+
+time=O(n)
+space=O(1)
