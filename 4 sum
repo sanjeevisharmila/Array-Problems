@@ -29,4 +29,37 @@ class Solution {
 }
 
 time=O(n*n*n*n)*O(no of quadruplets)
-space=O(no of quadrapltets)
+space=2*O(no of quadrapltets)
+
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>>ans=new ArrayList<>();
+        int n=nums.length;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                Set<Long>st=new HashSet<>();
+                for(int k=j+1;k<n;k++)
+                {
+                    long sum=(long)nums[i]+nums[j]+nums[k];
+                    long res=(long)target-sum;
+                    if(st.contains(res))
+                    {
+                        List<Integer>temp=Arrays.asList(nums[i],nums[j],nums[k],(int)res);
+                        Collections.sort(temp);
+                        if(!ans.contains(temp))
+                        {
+                            ans.add(temp);
+                        }
+                    }
+                    st.add((long)nums[k]);
+                }
+            }
+        } 
+        return ans;
+    }
+}
+
+time=O(n*n*n)*O(no of quadriplets)
+space=2*O(no of quadraplets)
