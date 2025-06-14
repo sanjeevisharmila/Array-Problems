@@ -33,3 +33,41 @@ class Solution {
 
 time=O(n*n)
 space=O(1)
+
+
+
+class Solution {
+    ArrayList<Integer> findTwoElement(int arr[]) {
+       int miss=-1,repeat=-1;
+       int n=arr.length;
+       int[] ans=new int[n+1];
+       Arrays.fill(ans,-1);
+       Map<Integer,Integer>mp=new HashMap<>();
+       for(int num:arr)
+       {
+           ans[num]=num;
+           mp.put(num,mp.getOrDefault(num,0)+1);
+       }
+       for(int i=1;i<ans.length;i++)
+       {
+           if(ans[i]==-1)
+           {
+               miss=i;
+           }
+       }
+       for(Map.Entry<Integer,Integer>entry:mp.entrySet())
+       {
+           if(entry.getValue()==2)
+           {
+               repeat=entry.getKey();
+           }
+       }
+       ArrayList<Integer>res=new ArrayList<>();
+       res.add(repeat);
+       res.add(miss);
+       return res;
+    }
+}
+
+time=O(3n)
+space=O(2n)
