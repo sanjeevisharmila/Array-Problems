@@ -1,0 +1,32 @@
+class Solution {
+    public int maxConsecBits(int[] arr) {
+        int max_zero=0,max_one=0;
+        if(arr.length==1)
+        return 1;
+        for(int i=0;i<arr.length-1;i++)
+        {
+            int z=1,o=1;
+            for(int j=i+1;j<arr.length;j++)
+            {
+                if(arr[j]==arr[j-1] && arr[j]==0)
+                {
+                    z++;
+                }
+                else if(arr[j]==arr[j-1] && arr[j]==1)
+                {
+                    o++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            max_zero=Math.max(max_zero,z);
+            max_one=Math.max(max_one,o);
+        }
+        return Math.max(max_zero,max_one);
+    }
+}
+
+time=O(n*n)
+space=O(1)
