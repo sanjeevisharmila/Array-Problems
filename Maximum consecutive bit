@@ -30,3 +30,51 @@ class Solution {
 
 time=O(n*n)
 space=O(1)
+
+class Solution {
+    public int maxConsecBits(int[] arr) {
+        if(arr.length==1)
+        return 1;
+        Stack<Integer>st=new Stack();
+        int max_zero=0,max_one=0;
+        int z=1,o=1;
+        st.push(arr[0]);
+        if(arr[0]==0)
+        z=1;
+        else
+        o=1;
+        for(int i=1;i<arr.length;i++)
+        {
+            if(arr[i]==st.peek() && arr[i]==0)
+            {
+                z++;
+                max_zero=Math.max(z,max_zero);
+            }
+            else if(arr[i]==st.peek() && arr[i]==1)
+            {
+                o++;
+                max_one=Math.max(o,max_one);
+            }
+            else
+            {
+                max_zero = Math.max(max_zero, z);
+                max_one = Math.max(max_one, o);
+                if(arr[i]==1)
+                {
+                    o=1;
+                    z=0;
+                }
+                else
+                {
+                    z=1;
+                    o=0;
+                }
+                st.pop();
+                st.push(arr[i]);
+            }
+        }
+        return Math.max(max_zero,max_one);
+    }
+}
+time=O(n)
+space=O(1)
