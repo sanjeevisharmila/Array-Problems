@@ -1,0 +1,19 @@
+class Solution {
+    static int repeatedSumOfDigits(int N) {
+        
+        while(N>9)
+        {
+            int sum=0;
+            while(N>0)
+            {
+                int r=N%10;
+                sum+=r;
+                N/=10;
+            }
+            N=sum;
+        }
+        return N;
+    }
+}
+time=O(log n)
+space=O(1)
